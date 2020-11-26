@@ -1,0 +1,23 @@
+{
+  "name": "thanos",
+  "version": "1.0.0",
+  "description": "react+redux+react-redux+redux-saga 简易版实现",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/proto1994/Thanos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/proto1994/Thanos/issues"
+  },
+  "homepage": "https://github.com/proto1994/Thanos#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.1"
+  }
+}
