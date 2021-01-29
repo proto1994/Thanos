@@ -62,6 +62,10 @@ export class SafeSubscriber extends Subscriber {
   }
 }
 
+function maybeWrapForDeprecatedSyncErrorHandling(handler, instance) {
+  return config.useDeprecatedSynchronousErrorHandling 
+}
+
 
 function defaultErrorHandler(err) {
   if (config.useDeprecatedSynchronousErrorHandling) {
