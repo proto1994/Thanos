@@ -50,7 +50,7 @@ export class SafeSubscriber extends Subscriber {
 
       next = next && next.bind(context);
       error = error && error.bind(context);
-      complete = complete && complete(context);
+      complete = complete && complete.bind(context);
     } 
 
     this.destination = {
