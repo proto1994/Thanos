@@ -1,3 +1,6 @@
+import React from 'react'
+import { render } from 'react-dom'
+import Provider from './react-redux/Provider';
 import { 
   createStore,
   combineReducers,
@@ -29,7 +32,28 @@ store.subscribe(() => {
 })
 
 
-store.dispatch({
-  type: ADD,
-  count: 3
-})
+function Child() {
+  return (
+    <div onClick={() => {
+      store.dispatch({
+        type: ADD,
+        count: 4
+      })
+    }}>
+      hello, child
+    </div>
+  )
+}
+
+function App() {
+  return (
+    <Provider
+      store={store}
+    >
+      <Child />
+    </Provider>
+  )
+}
+
+
+render(<App />, document.getElementById('app'))

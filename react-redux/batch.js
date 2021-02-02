@@ -2,7 +2,7 @@ function defaultNoopBatch(callback) {
   callback();
 }
 
-let batch = defaultNoopBatch();
+let batch = defaultNoopBatch;
 
 export const setBatch = newBatch => (batch = newBatch);
 

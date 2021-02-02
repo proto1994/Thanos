@@ -65,7 +65,7 @@ function createListenerCollection() {
 
 }
 
-export default class Subscription {
+export class Subscription {
 	constructor(store, parentSub) {
 		this.store = store;
 		this.parentSub = parentSub;
@@ -79,12 +79,22 @@ export default class Subscription {
 		return this.listeners.subscribe(listener);
 	}
 
+	notifyNestedSubs() {
+		this.listeners.notify();
+	}
+
+	handleChangeWrapper() {
+		if (this.onStateChange) {
+			this.onStateChange();
+		}
+	}
+
 	trySubscribe() {
 		if (!this.unsubscribe) {
 			this.unsubscribe = this.parentSub 
 				? this.parentSub.addNestedSub(this.handleChangeWrapper) 
 				: this.store.subscribe(this.handleChangeWrapper);
-			this.listeners.createListenerCollection();
+			this.listeners = createListenerCollection();
 		}
 	}
 
