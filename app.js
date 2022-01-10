@@ -1,59 +1,26 @@
-import React from 'react'
-import { render } from 'react-dom'
-import Provider from './react-redux/Provider';
-import { 
-  createStore,
-  combineReducers,
-  compose,
-  applyMiddleware,
- } from './redux'
-import logger from './redux-logger'
-const initState = {
-  count: 0
-}
-const ADD = 'ADD';
-const reducer = (state = initState, action) => {
-  switch(action.type) {
-    case ADD:
-      return {
-        ...state,
-        count: action.count
-      }
-    default:
-      return state
-  }
-}
-const rootReducer = combineReducers({
-  app: reducer
-})
-const store = createStore(rootReducer, initState, applyMiddleware(logger))
-store.subscribe(() => {
-  console.log(store.getState())
-})
+import * as React from './react'
+import { render } from './react-dom'
 
 
-function Child() {
+function Child2(props) {
   return (
-    <div onClick={() => {
-      store.dispatch({
-        type: ADD,
-        count: 4
-      })
-    }}>
-      hello, child
-    </div>
+    <span>
+      {props.text}
+      <h2>{props.children}</h2>
+    </span>
   )
 }
 
 function App() {
   return (
-    <Provider
-      store={store}
-    >
-      <Child />
-    </Provider>
+    <div onClick={() => {
+      console.log('app click');
+    }}>
+      <Child2 text='hello world'>
+        proto
+      </Child2>
+    </div>
   )
 }
-
 
 render(<App />, document.getElementById('app'))
